@@ -12,9 +12,22 @@
 </head>
 <body>
     <div> 
+        <div class="navbar">
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" style="background: none; border: none; color: blue; cursor: pointer; text-decoration: underline; padding: 0;">
+                  Logout
+                </button>
+              </form>
+            {% else %}
+              <a href="{% url 'login' %}">Login</a>
+              <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+          </div>
 
         {% block content%} 
-
+       
         {% endblock %}
     </div>
 

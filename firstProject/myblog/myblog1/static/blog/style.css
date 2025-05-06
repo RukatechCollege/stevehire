@@ -9,3 +9,8 @@ h1{
 h2{
     color: blue;
 }
+
+form {
+    width: 300px;
+    margin: 20px auto;
+}
