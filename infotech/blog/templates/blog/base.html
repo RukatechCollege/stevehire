@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Infotech</title>
+  <title>InfoLog</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -40,7 +40,7 @@
         <a href="index.html" class="logo d-flex align-items-end">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.webp" alt=""> -->
-          <h1 class="sitename">Infotech</h1><span>.</span>
+          <h1 class="sitename">InfoLog</h1><span>.</span>
         </a>
 
         <div class="d-flex align-items-center">
@@ -65,10 +65,10 @@
           <ul>
             <li><a href="{% url 'home' %}" class="active">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="category.html">Category</a></li>
-            <li><a href="blog-details.html">Blog Details</a></li>
-            <li><a href="author-profile.html">Author Profile</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li><a href="{% url "category" %}">Category</a></li>
+            <li><a href="{% url "blog_details" %}">Blog Details</a></li>
+            <li><a href="{% url "author_profile" %}">Author Profile</a></li>
+            {% comment %} <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="about.html">About</a></li>
                 <li><a href="category.html">Category</a></li>
@@ -87,7 +87,7 @@
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> {% endcomment %}
             <li><a href="{% url 'contact' %}">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
