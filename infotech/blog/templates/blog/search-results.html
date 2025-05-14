@@ -13,8 +13,8 @@
       <div class="breadcrumbs">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i class="bi bi-house"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Category</a></li>
+            <li class="breadcrumb-item"><a href="{% url "home" %}"><i class="bi bi-house"></i> Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url "category" %}">Category</a></li>
             <li class="breadcrumb-item active current">Search Results</li>
           </ol>
         </nav>
@@ -31,187 +31,78 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
-
+              {% for post in pageObj %}
           <div class="col-lg-4">
             <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-1.webp" alt="" class="img-fluid">
+              <div class="posts-img">
+                {% if post.image %}
+                <img src="{{post.image.url}}" alt="{{post.title}}" class="img-fluid">
+                {% endif %}
               </div>
 
-              <p class="post-category">Politics</p>
+              <p class="post-category">{{post.category.name}}</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
+                <a href="{% url "blog_details" post.id %}">{{post.title}}</a>
               </h2>
 
               <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-f-12.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
+                {% if post.image %}
+                <img src="{{post.image.url}}" alt="{{post.title}}" class="img-fluid post-author-img flex-shrink-0">
+                {% endif %}
                 <div class="post-meta">
-                  <p class="post-author">Maria Doe</p>
+                  <p class="post-author">{{post.author}}</p>
                   <p class="post-date">
-                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                    <time datetime="2022-01-01">{{post.date_posted}}</time>
                   </p>
                 </div>
               </div>
 
             </article>
           </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-2.webp" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Sports</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-f-13.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Allisa Mayer</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jun 5, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-3.webp" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Entertainment</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-m-10.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Mark Dower</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jun 22, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-4.webp" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Sports</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Non rem rerum nam cum quo minus olor distincti</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-f-14.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Lisa Neymar</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jun 30, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-5.webp" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Politics</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Accusamus quaerat aliquam qui debitis facilis consequatur</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-m-11.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Denis Peterson</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jan 30, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="assets/img/blog/blog-post-6.webp" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Entertainment</p>
-
-              <h2 class="title">
-                <a href="blog-details.html">Distinctio provident quibusdam numquam aperiam aut</a>
-              </h2>
-
-              <div class="d-flex align-items-center">
-                <img src="assets/img/person/person-f-15.webp" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author">Mika Lendon</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Feb 14, 2022</time>
-                  </p>
-                </div>
-              </div>
-
-            </article>
-          </div><!-- End post list item -->
-
+          {% endfor %}    
         </div>
       </div>
 
     </section><!-- /Search Results Posts Section -->
 
     <!-- Pagination 3 Section -->
-    <section id="pagination-3" class="pagination-3 section">
+          <section id="pagination-3" class="pagination-3 section">
 
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>...</li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
+            <div class="container">
+              <div class="d-flex justify-content-center">
+                <ul>
+                   {% if pageObj.has_previous %}
+                    <li><a href="?page={{ pageObj.previous_page_number }}"><i class="bi bi-chevron-left"></i></a></li>
+                  {% else %}
+                    <li class="disabled"><a><i class="bi bi-chevron-left"></i></a></li>
+                  {% endif %}
 
-    </section><!-- /Pagination 3 Section -->
+                  {# Page numbers #}
+                  {% for num in pageObj.paginator.page_range %}
+                    {% if pageObj.number == num %}
+                      <li><a class="active" href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num > pageObj.number|add:'-3' and num < pageObj.number|add:'3' %}
+                      <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num == 1 or num == pageObj.paginator.num_pages %}
+                      <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif forloop.first or forloop.last %}
+                      <li>...</li>
+                    {% endif %}
+                  {% endfor %}
+
+                  {# Next page link #}
+                  {% if pageObj.has_next %}
+                    <li><a href="?page={{ pageObj.next_page_number }}"><i class="bi bi-chevron-right"></i></a></li>
+                  {% else %}
+                    <li class="disabled"><a><i class="bi bi-chevron-right"></i></a></li>
+                  {% endif %}
+
+                </ul>
+              </div>
+            </div>
+
+          </section><!-- /Pagination 3 Section -->
 
   </main>
 

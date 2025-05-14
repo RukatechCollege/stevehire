@@ -43,7 +43,7 @@
 
                     <div class="post-img">
                       {% if post.image %}
-                      <img src="{{ post.image.url }}" alt="{{post.title}}" class="img-fluid">
+                      <img src="{{ post.image.url}}" alt="{{post.title}}" class="img-fluid">
                       {% endif %}
                     </div>
 
@@ -77,16 +77,32 @@
             <div class="container">
               <div class="d-flex justify-content-center">
                 <ul>
-                  {% if pageObj.has_previous %}
-                  <li><a href="?q={{query}}&category={{category_id}}&page={{pageObj.previous_page_number}}"><i class="bi bi-chevron-left"></i></a></li>
-                  <li><a href="?q={{query}}&category={{ category }}&page=1">1</a></li>
+                   {% if pageObj.has_previous %}
+                    <li><a href="?page={{ pageObj.previous_page_number }}"><i class="bi bi-chevron-left"></i></a></li>
+                  {% else %}
+                    <li class="disabled"><a><i class="bi bi-chevron-left"></i></a></li>
                   {% endif %}
 
-                  <li><a href="#" class="active">page{{ pageObj.number}} of {{ pageObj.paginator.num_pages}}</a></li>
+                  {# Page numbers #}
+                  {% for num in pageObj.paginator.page_range %}
+                    {% if pageObj.number == num %}
+                      <li><a class="active" href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num > pageObj.number|add:'-3' and num < pageObj.number|add:'3' %}
+                      <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num == 1 or num == pageObj.paginator.num_pages %}
+                      <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif forloop.first or forloop.last %}
+                      <li>...</li>
+                    {% endif %}
+                  {% endfor %}
 
+                  {# Next page link #}
                   {% if pageObj.has_next %}
-                  <li><a href="?q={{query}}&category={{category_id}}&page={{pageObj.next_page_number}}"><i class="bi bi-chevron-right"></i></a></li>
+                    <li><a href="?page={{ pageObj.next_page_number }}"><i class="bi bi-chevron-right"></i></a></li>
+                  {% else %}
+                    <li class="disabled"><a><i class="bi bi-chevron-right"></i></a></li>
                   {% endif %}
+
                 </ul>
               </div>
             </div>
@@ -128,7 +144,7 @@
               <h3 class="widget-title">Recent Posts</h3>
                 {% for recent_posts in recent_posts  %}
               <div class="post-item">
-                {% if recent_posts.image %}
+                {% if recent_posts.image.url %}
                 <img src="{{recent_posts.image.url}}" alt="{{recent_posts.title}}" class="flex-shrink-0">
                 {% endif %}
                 <div>
@@ -143,11 +159,11 @@
             <div class="tags-widget widget-item">
 
               <h3 class="widget-title">Tags</h3>
-              {% for tag in tag %}
               <ul>
+                {% for tag in tag %}
                 <li><a href="#">{{tag.name}}</a></li>
+                {% endfor %}
               </ul>
-              {% endfor %}
             </div><!--/Tags Widget -->
 
           </div>

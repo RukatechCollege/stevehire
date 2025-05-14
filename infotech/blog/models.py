@@ -21,7 +21,7 @@ class Posts(models.Model):
     author = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='posts/')
+    image = models.ImageField(upload_to='posts/', blank=True, null=True)
     tags = models.ManyToManyField(Tag)
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(auto_now_add=True)
